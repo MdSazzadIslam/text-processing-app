@@ -1,9 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class ReportDto {
-  @ApiProperty({ required: false, default: 10 })
-  @IsOptional()
-  @IsNumber()
-  numCommonWords?: number;
+export class TextDto {
+  @ApiProperty({
+    description: 'Text to be processed',
+    example: 'Plek backend assignment',
+  })
+  @IsNotEmpty()
+  @IsString()
+  text: string;
 }
