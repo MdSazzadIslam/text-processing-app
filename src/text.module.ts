@@ -1,10 +1,16 @@
 import { Module } from '@nestjs/common';
 import { TextController } from './text.controller';
 import { TextService } from './text.service';
+import { ConfigModule } from '@nestjs/config';
+import { LanguageMiddleware } from './middlewares/language.middleware';
+
+const envModule = ConfigModule.forRoot({
+  isGlobal: true,
+});
 
 @Module({
-  imports: [],
+  imports: [envModule],
   controllers: [TextController],
-  providers: [TextService],
+  providers: [TextService, LanguageMiddleware],
 })
 export class TextModule {}
